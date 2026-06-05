@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { FaEye, FaChevronDown, FaBookOpen } from "react-icons/fa";
 import PageNavbar from "./PageNavbar.jsx";
 
-import project1 from "../assets/images/project-02.png";
-import project2 from "../assets/images/project-01.png";
+import project1 from "../assets/images/project-2-1.png";
+import project2 from "../assets/images/project-1-1.png";
 
 const Portfolio = () => {
   const [activeFilter, setActiveFilter] = useState("All");
