@@ -1,49 +1,17 @@
-import project02 from '../assets/images/project-02.png';
-import project002 from '../assets/images/project-002.png';
-import project0002 from '../assets/images/project-0002.png';
+import project01 from '../assets/images/project-1-1.png';
+import project001 from '../assets/images/project-1-2.png';
+import project0001 from '../assets/images/project-1-3.png';
+
+import project02 from '../assets/images/project-2-1.png';
+import project002 from '../assets/images/project-2-2.png';
+import project0002 from '../assets/images/project-2-3.png';
 
 
 
-import project01 from '../assets/images/project-01.png';
-import project001 from '../assets/images/project-001.png';
-import project0001 from '../assets/images/project-0001.png';
+
 // import project3 from '../assets/images/project-03.png'; // Add when available
 
 const projectsData = {
-  "nexra": {
-    id: 1,
-    slug: "nexra",
-    title: "Nexra – E-commerce Web Application",
-    category: "Full Stack",
-    overview: "A full-stack e-commerce platform built with the MERN stack, featuring secure JWT authentication, admin dashboard, and complete shopping cart functionality.",
-    description: [
-      "Nexra is a comprehensive e-commerce solution designed to provide a seamless shopping experience across all devices. The application handles everything from product browsing to order tracking.",
-      "The project was architected with scalability in mind, utilizing MongoDB for flexible data storage and React Context API for efficient state management across the component tree.",
-      "I implemented a role-based access control system where admins can manage inventory, users, and orders through a dedicated dashboard, while customers enjoy a streamlined shopping experience."
-    ],
-    features: [
-      "Responsive React.js components optimized for all screen sizes",
-      "Secure JWT-based authentication and authorization system",
-      "React Context API for global state management (sessions, cart)",
-      "RESTful APIs built with Node.js and Express.js",
-      "Admin Dashboard for product, user, inventory, and order management",
-      "Complete e-commerce flow: listings, cart, placement, tracking",
-      "MongoDB database with optimized queries for performance"
-    ],
-    challenges: [
-      { challenge: "Managing complex cart state across multiple components without prop drilling.", solution: "Implemented React Context API with useReducer for predictable state updates, ensuring cart persistence during user sessions." },
-      { challenge: "Handling image uploads and product media efficiently.", solution: "Designed a cloud-integrated file handling system with optimized image delivery." }
-    ],
-    techStack: ["MongoDB", "Express.js", "React.js", "Node.js", "JWT", "Context API", "Bootstrap"],
-    liveDemo: "https://nexra-demo.vercel.app",
-    github: "https://github.com/haroonameer/nexra",
-    thumbnail: project02,
-    images: [project02, project002, project0002], // Replace with actual screenshots when available
-    duration: "2 months",
-    role: "Full Stack Developer",
-    year: "2026"
-  },
-
   "nexora-ai": {
     id: 2,
     slug: "nexora-ai",
@@ -74,6 +42,39 @@ const projectsData = {
     github: "https://github.com/haroonameer/nexora-ai",
     thumbnail: project01,
     images: [project01, project001, project0001], // Replace with actual screenshots when available
+    duration: "2 months",
+    role: "Full Stack Developer",
+    year: "2026"
+  },
+  "nexra": {
+    id: 1,
+    slug: "nexra",
+    title: "Nexra – E-commerce Web Application",
+    category: "Full Stack",
+    overview: "A full-stack e-commerce platform built with the MERN stack, featuring secure JWT authentication, admin dashboard, and complete shopping cart functionality.",
+    description: [
+      "Nexra is a comprehensive e-commerce solution designed to provide a seamless shopping experience across all devices. The application handles everything from product browsing to order tracking.",
+      "The project was architected with scalability in mind, utilizing MongoDB for flexible data storage and React Context API for efficient state management across the component tree.",
+      "I implemented a role-based access control system where admins can manage inventory, users, and orders through a dedicated dashboard, while customers enjoy a streamlined shopping experience."
+    ],
+    features: [
+      "Responsive React.js components optimized for all screen sizes",
+      "Secure JWT-based authentication and authorization system",
+      "React Context API for global state management (sessions, cart)",
+      "RESTful APIs built with Node.js and Express.js",
+      "Admin Dashboard for product, user, inventory, and order management",
+      "Complete e-commerce flow: listings, cart, placement, tracking",
+      "MongoDB database with optimized queries for performance"
+    ],
+    challenges: [
+      { challenge: "Managing complex cart state across multiple components without prop drilling.", solution: "Implemented React Context API with useReducer for predictable state updates, ensuring cart persistence during user sessions." },
+      { challenge: "Handling image uploads and product media efficiently.", solution: "Designed a cloud-integrated file handling system with optimized image delivery." }
+    ],
+    techStack: ["MongoDB", "Express.js", "React.js", "Node.js", "JWT", "Context API", "Bootstrap"],
+    liveDemo: "https://nexra-demo.vercel.app",
+    github: "https://github.com/haroonameer/nexra",
+    thumbnail: project02,
+    images: [project02, project002, project0002], // Replace with actual screenshots when available
     duration: "2 months",
     role: "Full Stack Developer",
     year: "2026"

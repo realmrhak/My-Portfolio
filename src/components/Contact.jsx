@@ -221,7 +221,7 @@ const Contact = () => {
           }}
         >
           {loading ? "Sending..." : "Send Message"}
-          <IoIosSend size={18} style={{ transform: "rotate(45deg)" }} />
+          <IoIosSend size={18} style={{ transform: "rotate(15deg)" }} />
         </button>
       </form>
     </section>
