@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 import { IoIosSend } from "react-icons/io";
 import PageNavbar from "./PageNavbar";
@@ -7,6 +7,13 @@ const Contact = () => {
   const form = useRef();
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // ═══ EmailJS Credentials from .env ═══
   const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
@@ -88,7 +95,7 @@ const Contact = () => {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
+            gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)",
             gap: "16px",
             marginBottom: "16px",
           }}
@@ -213,8 +220,8 @@ const Contact = () => {
             e.currentTarget.style.boxShadow = "none";
           }}
         >
-          <IoIosSend size={18} style={{ transform: "rotate(45deg)" }} />
           {loading ? "Sending..." : "Send Message"}
+          <IoIosSend size={18} style={{ transform: "rotate(45deg)" }} />
         </button>
       </form>
     </section>

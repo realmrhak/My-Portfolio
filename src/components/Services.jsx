@@ -15,8 +15,15 @@ const Services = () => {
   const [currentOutput, setCurrentOutput] = useState(null);
   const [isTyping, setIsTyping] = useState(false);
   const [typedText, setTypedText] = useState("");
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const outputEndRef = useRef(null);
   const terminalBodyRef = useRef(null);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const services = [
     {
@@ -262,12 +269,12 @@ const Services = () => {
         </p>
       </div>
 
-      {/* ═══ COMMAND PALETTE: 2 per row, last centered ═══ */}
+      {/* ═══ COMMAND PALETTE: Responsive grid ═══ */}
       <div
         className="command-palette"
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(2, 1fr)",
+          gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)",
           gap: "16px",
         }}
       >
@@ -279,9 +286,9 @@ const Services = () => {
             <div
               key={service.id}
               style={{
-                gridColumn: isLastOdd ? "1 / -1" : "auto",
-                maxWidth: isLastOdd ? "calc(50% - 8px)" : "100%",
-                margin: isLastOdd ? "0 auto" : "0",
+                gridColumn: isLastOdd && !isMobile ? "1 / -1" : "auto",
+                maxWidth: isLastOdd && !isMobile ? "calc(50% - 8px)" : "100%",
+                margin: isLastOdd && !isMobile ? "0 auto" : "0",
                 width: "100%",
               }}
             >
