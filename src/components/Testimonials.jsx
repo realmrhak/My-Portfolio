@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/scrollbar";
 import { Scrollbar } from "swiper/modules";
-import AdditionalSkills from './AdditionalSkills'
+import AdditionalSkills from "./AdditionalSkills.jsx";
 import avatar1 from "../assets/images/avatar-1.png";
 import avatar2 from "../assets/images/avatar-2.png";
 
@@ -64,7 +64,7 @@ const Testimonials = () => {
 
       {/* Additional Skills */}
 
-     <AdditionalSkills />
+      <AdditionalSkills />
     </section>
   );
 };

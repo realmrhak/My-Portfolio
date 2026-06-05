@@ -8,7 +8,7 @@ import {
   FaHistory,
   FaTrash,
 } from "react-icons/fa";
-import PageNavbar from "./PageNavbar";
+import PageNavbar from "./PageNavbar.jsx";
 
 const Services = () => {
   const [history, setHistory] = useState([]);

@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 import { IoIosSend } from "react-icons/io";
-import PageNavbar from "./PageNavbar";
+import PageNavbar from "./PageNavbar.jsx";
 
 const Contact = () => {
   const form = useRef();

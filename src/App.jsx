@@ -1,32 +1,25 @@
 import { Routes, Route } from "react-router-dom";
 
-import Sidebar from "./components/Sidebar";
-
-import About from "./components/About";
-import Resume from "./components/Resume";
-import Services from "./components/Services";
-import Portfolio from "./components/Portfolio";
-// import Blog from "./components/Blog";
-import Contact from "./components/Contact";
-import CustomCursor from "./components/CustomCursor";
-import ProjectDetail from "./components/ProjectDetail";
+import Sidebar from "./components/Sidebar.jsx";
+import About from "./components/About.jsx";
+import Resume from "./components/Resume.jsx";
+import Services from "./components/Services.jsx";
+import Portfolio from "./components/Portfolio.jsx";
+import Contact from "./components/Contact.jsx";
+import CustomCursor from "./components/CustomCursor.jsx";
+import ProjectDetail from "./components/ProjectDetail.jsx";
 
 function App() {
-
   return (
-
     <main className="main-layout">
-
       {/* =========================
           CUSTOM CURSOR
       ========================= */}
 
-     <CustomCursor />
+      <CustomCursor />
 
       <div className="container">
-
         <div className="row">
-
           {/* =========================
               SIDEBAR
           ========================= */}
@@ -40,61 +33,33 @@ function App() {
           ========================= */}
 
           <div className="col-xl-9 col-lg-8">
-
             <div className="page-content">
-
               <Routes>
+                <Route path="/" element={<About />} />
 
-                <Route
-                  path="/"
-                  element={<About />}
-                />
+                <Route path="/resume" element={<Resume />} />
 
-                <Route
-                  path="/resume"
-                  element={<Resume />}
-                />
+                <Route path="/services" element={<Services />} />
 
-                <Route
-                  path="/services"
-                  element={<Services />}
-                />
-
-                <Route
-                  path="/portfolio"
-                  element={<Portfolio />}
-                />
+                <Route path="/portfolio" element={<Portfolio />} />
 
                 {/* =========================
                     PROJECT DETAIL PAGE
                 ========================= */}
-                <Route
-                  path="/project/:slug"
-                  element={<ProjectDetail />}
-                />
+                <Route path="/project/:slug" element={<ProjectDetail />} />
 
                 {/* <Route
                   path="/blog"
                   element={<Blog />}
                 /> */}
 
-                <Route
-                  path="/contact"
-                  element={<Contact />}
-                />
-
+                <Route path="/contact" element={<Contact />} />
               </Routes>
-
             </div>
-
           </div>
-
         </div>
-
       </div>
-
     </main>
-
   );
 }
 

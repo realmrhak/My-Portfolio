@@ -1,26 +1,25 @@
-import { FaBookOpen, FaBriefcase } from 'react-icons/fa';
-import PageNavbar from './PageNavbar';
-
+import { FaBookOpen, FaBriefcase } from "react-icons/fa";
+import PageNavbar from "./PageNavbar.jsx";
 
 const Resume = () => {
   const education = [
     {
-      title: 'Bachelor in Computer Science',
-      date: '2021 — 2025',
-      desc: 'Studying modern web technologies, software engineering and UI/UX.'
+      title: "Bachelor in Computer Science",
+      date: "2021 — 2025",
+      desc: "Studying modern web technologies, software engineering and UI/UX.",
     },
     {
-      title: 'Intermediate Education',
-      date: '2020 — 2022',
-      desc: 'Focused on computer science and mathematics.'
-    }
+      title: "Intermediate Education",
+      date: "2020 — 2022",
+      desc: "Focused on computer science and mathematics.",
+    },
   ];
 
   const experience = [
     {
-      title: 'Frontend Developer Intern',
-      date: 'Jan 2025 — Apr 2025',
-      desc: 'Building responsive React applications and portfolio websites.'
+      title: "Frontend Developer Intern",
+      date: "Jan 2025 — Apr 2025",
+      desc: "Building responsive React applications and portfolio websites.",
     },
     // {
     //   title: 'Freelance Web Designer',
@@ -30,23 +29,22 @@ const Resume = () => {
   ];
 
   const skills = [
-    { name: 'HTML5', value: '95%' },
-    { name: 'CSS3', value: '90%' },
-    { name: 'Tailwind CSS', value: '80%' },
-    { name: 'JavaScript (ES6+)', value: '85%' },
-    { name: 'React JS', value: '90%' },
-    { name: 'Node.js', value: '80%' },
-    { name: 'Express.js', value: '85%' },
-    { name: 'REST APIs', value: '85%' },
-    { name: 'JWT Authentication', value: '90%' },
-    { name: 'Postman', value: '90%' },
-    { name: 'MongoDB', value: '90%' },
-    { name: 'Git & GitHub', value: '85%' },
+    { name: "HTML5", value: "95%" },
+    { name: "CSS3", value: "90%" },
+    { name: "Tailwind CSS", value: "80%" },
+    { name: "JavaScript (ES6+)", value: "85%" },
+    { name: "React JS", value: "90%" },
+    { name: "Node.js", value: "80%" },
+    { name: "Express.js", value: "85%" },
+    { name: "REST APIs", value: "85%" },
+    { name: "JWT Authentication", value: "90%" },
+    { name: "Postman", value: "90%" },
+    { name: "MongoDB", value: "90%" },
+    { name: "Git & GitHub", value: "85%" },
   ];
 
   return (
     <section className="resume-section">
-
       <PageNavbar />
       <div className="article-title-box">
         <h2 className="article-title">Resume</h2>

@@ -8,7 +8,7 @@ import {
   FaArrowLeft,
   FaCheckCircle,
 } from "react-icons/fa";
-import PageNavbar from "./PageNavbar";
+import PageNavbar from "./PageNavbar.jsx";
 import { getProjectBySlug, getRelatedProjects } from "../data/projectsData";
 
 const ProjectDetail = () => {

@@ -1,7 +1,7 @@
 import { useMemo, useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaEye, FaChevronDown, FaBookOpen } from "react-icons/fa";
-import PageNavbar from "./PageNavbar";
+import PageNavbar from "./PageNavbar.jsx";
 
 import project1 from "../assets/images/project-02.png";
 import project2 from "../assets/images/project-01.png";
