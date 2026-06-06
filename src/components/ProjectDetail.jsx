@@ -11,49 +11,6 @@ import {
 import PageNavbar from "./PageNavbar.jsx";
 import { getProjectBySlug, getRelatedProjects } from "../data/projectsData";
 
-// ============================
-// LAZY IMAGE WITH SKELETON
-// ============================
-const LazyImage = ({ src, alt, className, style }) => {
-  const [loaded, setLoaded] = useState(false);
-
-  return (
-    <div style={{ position: "relative", width: "100%", height: "100%" }}>
-      {/* Skeleton loader */}
-      {!loaded && (
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "linear-gradient(90deg, #1a1a2e 25%, #252540 50%, #1a1a2e 75%)",
-            backgroundSize: "200% 100%",
-            animation: "shimmer 1.5s infinite",
-            zIndex: 1,
-          }}
-        />
-      )}
-
-      {/* Image */}
-      <img
-        src={src}
-        alt={alt}
-        className={className}
-        style={{
-          ...style,
-          opacity: loaded ? 1 : 0,
-          transition: "opacity 0.4s ease",
-          position: "relative",
-          zIndex: 2,
-        }}
-        loading="lazy"
-        decoding="async"
-        onLoad={() => setLoaded(true)}
-      />
-    </div>
-  );
-};
-
 const ProjectDetail = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
@@ -110,10 +67,7 @@ const ProjectDetail = () => {
           >
             <Link
               to="/portfolio"
-              style={{
-                color: "#ffdb70",
-                textDecoration: "none",
-              }}
+              style={{ color: "#ffdb70", textDecoration: "none" }}
             >
               Portfolio
             </Link>
@@ -195,23 +149,12 @@ const ProjectDetail = () => {
 
       {/* Image Carousel */}
       <div className="project-carousel" style={{ marginBottom: "30px" }}>
-        <div
-          className="carousel-main"
-          style={{
-            position: "relative",
-            overflow: "hidden",
-            aspectRatio: "16/10",
-          }}
-        >
-          <LazyImage
+        <div className="carousel-main">
+          <img
             src={project.images[currentImageIndex]}
             alt={`${project.title} screenshot ${currentImageIndex + 1}`}
             className="carousel-image"
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-            }}
+            loading="eager"
           />
 
           {project.images.length > 1 && (
@@ -247,15 +190,7 @@ const ProjectDetail = () => {
                 onClick={() => goToImage(index)}
                 aria-label={`Go to image ${index + 1}`}
               >
-                <LazyImage
-                  src={img}
-                  alt={`Thumbnail ${index + 1}`}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                  }}
-                />
+                <img src={img} alt={`Thumbnail ${index + 1}`} loading="lazy" />
               </button>
             ))}
           </div>
@@ -407,22 +342,11 @@ const ProjectDetail = () => {
                   to={`/project/${relProject.slug}`}
                   className="related-project-card"
                 >
-                  <div
-                    className="related-project-img-wrap"
-                    style={{
-                      position: "relative",
-                      overflow: "hidden",
-                      aspectRatio: "16/10",
-                    }}
-                  >
-                    <LazyImage
+                  <div className="related-project-img-wrap">
+                    <img
                       src={relProject.thumbnail}
                       alt={relProject.title}
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                      }}
+                      loading="lazy"
                     />
                     <div className="related-project-overlay">
                       <span>

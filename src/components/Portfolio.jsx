@@ -6,49 +6,6 @@ import PageNavbar from "./PageNavbar.jsx";
 import project1 from "../assets/images/project-2-1.png";
 import project2 from "../assets/images/project-1-1.png";
 
-// ============================
-// LAZY IMAGE WITH SKELETON
-// ============================
-const LazyImage = ({ src, alt, className, style }) => {
-  const [loaded, setLoaded] = useState(false);
-
-  return (
-    <div style={{ position: "relative", width: "100%", height: "100%" }}>
-      {/* Skeleton loader */}
-      {!loaded && (
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "linear-gradient(90deg, #1a1a2e 25%, #252540 50%, #1a1a2e 75%)",
-            backgroundSize: "200% 100%",
-            animation: "shimmer 1.5s infinite",
-            zIndex: 1,
-          }}
-        />
-      )}
-
-      {/* Image */}
-      <img
-        src={src}
-        alt={alt}
-        className={className}
-        style={{
-          ...style,
-          opacity: loaded ? 1 : 0,
-          transition: "opacity 0.4s ease",
-          position: "relative",
-          zIndex: 2,
-        }}
-        loading="lazy"
-        decoding="async"
-        onLoad={() => setLoaded(true)}
-      />
-    </div>
-  );
-};
-
 const Portfolio = () => {
   const [activeFilter, setActiveFilter] = useState("All");
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -90,7 +47,6 @@ const Portfolio = () => {
         setDropdownOpen(false);
       }
     };
-
     if (dropdownOpen) {
       document.addEventListener("mousedown", handleClickOutside);
       return () =>
@@ -101,7 +57,6 @@ const Portfolio = () => {
   return (
     <section className="content-card">
       <PageNavbar />
-
       <h2 className="article-title">Portfolio</h2>
 
       {/* Mobile Dropdown */}
@@ -123,7 +78,6 @@ const Portfolio = () => {
             }}
           />
         </button>
-
         {dropdownOpen && (
           <div className="mobile-filter-dropdown">
             {filters.map((filter, index) => (
@@ -160,24 +114,8 @@ const Portfolio = () => {
         {filteredProjects.map((project, index) => (
           <div className="col-md-6 col-lg-4 mb-4" key={index}>
             <div className="project-card">
-              <div
-                className="project-img"
-                style={{
-                  position: "relative",
-                  overflow: "hidden",
-                  aspectRatio: "16/10",
-                }}
-              >
-                <LazyImage
-                  src={project.image}
-                  alt={project.title}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                  }}
-                />
-
+              <div className="project-img">
+                <img src={project.image} alt={project.title} loading="lazy" />
                 <div className="project-overlay">
                   <a
                     href={project.link}
@@ -195,7 +133,6 @@ const Portfolio = () => {
                   </Link>
                 </div>
               </div>
-
               <div className="project-content">
                 <h4>{project.title}</h4>
                 <p>{project.category}</p>
