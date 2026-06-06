@@ -12,22 +12,29 @@ import PageNavbar from "./PageNavbar.jsx";
 import { getProjectBySlug, getRelatedProjects } from "../data/projectsData";
 
 // ============================
-// OPTIMIZED IMAGE COMPONENT
+// LAZY IMAGE WITH SKELETON
 // ============================
-const OptimizedImage = ({ src, alt, className, style }) => {
+const LazyImage = ({ src, alt, className, style }) => {
   const [loaded, setLoaded] = useState(false);
 
-  // WebP aur AVIF versions generate karo
-  const webpSrc = src.replace(/\.(png|jpe?g)$/, ".webp");
-  const avifSrc = src.replace(/\.(png|jpe?g)$/, ".avif");
-
   return (
-    <picture style={{ display: "contents" }}>
-      {/* AVIF for modern browsers */}
-      <source srcSet={avifSrc} type="image/avif" />
-      {/* WebP for most browsers */}
-      <source srcSet={webpSrc} type="image/webp" />
-      {/* Fallback to original optimized PNG/JPG */}
+    <div style={{ position: "relative", width: "100%", height: "100%" }}>
+      {/* Skeleton loader */}
+      {!loaded && (
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background:
+              "linear-gradient(90deg, #1a1a2e 25%, #252540 50%, #1a1a2e 75%)",
+            backgroundSize: "200% 100%",
+            animation: "shimmer 1.5s infinite",
+            zIndex: 1,
+          }}
+        />
+      )}
+
+      {/* Image */}
       <img
         src={src}
         alt={alt}
@@ -36,12 +43,14 @@ const OptimizedImage = ({ src, alt, className, style }) => {
           ...style,
           opacity: loaded ? 1 : 0,
           transition: "opacity 0.4s ease",
+          position: "relative",
+          zIndex: 2,
         }}
         loading="lazy"
         decoding="async"
         onLoad={() => setLoaded(true)}
       />
-    </picture>
+    </div>
   );
 };
 
@@ -50,27 +59,17 @@ const ProjectDetail = () => {
   const navigate = useNavigate();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  /* =========================
-     DERIVE DATA WITH useMemo
-     (synchronous — no API call needed)
-  ========================= */
   const project = useMemo(() => getProjectBySlug(slug), [slug]);
   const related = useMemo(
     () => (project ? getRelatedProjects(slug) : []),
     [slug, project],
   );
 
-  /* =========================
-     REDIRECT IF NOT FOUND
-  ========================= */
   if (!project) {
     navigate("/portfolio");
     return null;
   }
 
-  /* =========================
-     CAROUSEL HANDLERS
-  ========================= */
   const goToPreviousImage = () => {
     setCurrentImageIndex((prev) =>
       prev === 0 ? project.images.length - 1 : prev - 1,
@@ -89,7 +88,6 @@ const ProjectDetail = () => {
 
   return (
     <section className="content-card">
-      {/* Page Navbar */}
       <PageNavbar />
 
       {/* Breadcrumb */}
@@ -199,23 +197,13 @@ const ProjectDetail = () => {
       <div className="project-carousel" style={{ marginBottom: "30px" }}>
         <div
           className="carousel-main"
-          style={{ position: "relative", overflow: "hidden" }}
+          style={{
+            position: "relative",
+            overflow: "hidden",
+            aspectRatio: "16/10",
+          }}
         >
-          {/* Skeleton loader */}
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              background:
-                "linear-gradient(90deg, #1a1a2e 25%, #252540 50%, #1a1a2e 75%)",
-              backgroundSize: "200% 100%",
-              animation: "shimmer 1.5s infinite",
-              zIndex: 1,
-            }}
-          />
-
-          {/* Optimized main image */}
-          <OptimizedImage
+          <LazyImage
             src={project.images[currentImageIndex]}
             alt={`${project.title} screenshot ${currentImageIndex + 1}`}
             className="carousel-image"
@@ -223,8 +211,6 @@ const ProjectDetail = () => {
               width: "100%",
               height: "100%",
               objectFit: "cover",
-              position: "relative",
-              zIndex: 2,
             }}
           />
 
@@ -261,10 +247,14 @@ const ProjectDetail = () => {
                 onClick={() => goToImage(index)}
                 aria-label={`Go to image ${index + 1}`}
               >
-                <OptimizedImage
+                <LazyImage
                   src={img}
                   alt={`Thumbnail ${index + 1}`}
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                  }}
                 />
               </button>
             ))}
@@ -274,9 +264,7 @@ const ProjectDetail = () => {
 
       {/* Main Content */}
       <div className="row">
-        {/* Left Column - Details */}
         <div className="col-lg-8">
-          {/* Description */}
           <div style={{ marginBottom: "35px" }}>
             <h3 className="project-section-title">
               <span className="title-accent-bar"></span>
@@ -293,7 +281,6 @@ const ProjectDetail = () => {
             </div>
           </div>
 
-          {/* Features */}
           <div style={{ marginBottom: "35px" }}>
             <h3 className="project-section-title">
               <span className="title-accent-bar"></span>
@@ -311,7 +298,6 @@ const ProjectDetail = () => {
             </ul>
           </div>
 
-          {/* Challenges */}
           {project.challenges && project.challenges.length > 0 && (
             <div style={{ marginBottom: "35px" }}>
               <h3 className="project-section-title">
@@ -334,10 +320,8 @@ const ProjectDetail = () => {
           )}
         </div>
 
-        {/* Right Column - Sidebar */}
         <div className="col-lg-4">
           <div className="project-sidebar">
-            {/* Tech Stack */}
             <div className="sidebar-info-box">
               <h4 className="sidebar-box-title">Technologies</h4>
               <div className="tech-stack">
@@ -349,7 +333,6 @@ const ProjectDetail = () => {
               </div>
             </div>
 
-            {/* Quick Info */}
             <div className="sidebar-info-box">
               <h4 className="sidebar-box-title">Quick Info</h4>
               <div className="quick-info">
@@ -372,7 +355,6 @@ const ProjectDetail = () => {
               </div>
             </div>
 
-            {/* Links */}
             <div className="sidebar-info-box">
               <h4 className="sidebar-box-title">Links</h4>
               <div className="project-links-list">
@@ -427,29 +409,19 @@ const ProjectDetail = () => {
                 >
                   <div
                     className="related-project-img-wrap"
-                    style={{ position: "relative", overflow: "hidden" }}
+                    style={{
+                      position: "relative",
+                      overflow: "hidden",
+                      aspectRatio: "16/10",
+                    }}
                   >
-                    {/* Skeleton */}
-                    <div
-                      style={{
-                        position: "absolute",
-                        inset: 0,
-                        background:
-                          "linear-gradient(90deg, #1a1a2e 25%, #252540 50%, #1a1a2e 75%)",
-                        backgroundSize: "200% 100%",
-                        animation: "shimmer 1.5s infinite",
-                        zIndex: 1,
-                      }}
-                    />
-                    <OptimizedImage
+                    <LazyImage
                       src={relProject.thumbnail}
                       alt={relProject.title}
                       style={{
                         width: "100%",
                         height: "100%",
                         objectFit: "cover",
-                        position: "relative",
-                        zIndex: 2,
                       }}
                     />
                     <div className="related-project-overlay">
