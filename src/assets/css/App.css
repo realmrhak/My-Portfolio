@@ -440,12 +440,12 @@ ul {
 .info_more-btn {
   position: absolute;
   top: -25px;
-  right: -19px;
+  right: -21px;
   background: #2b2b2c;
   color: var(--accent);
   border: 1px solid var(--border-color);
   border-radius: 0 30px 0 20px;
-  padding: 18px 22px;
+  padding: 10px 14px;
   font-size: 15px;
   font-weight: 500;
   cursor: pointer;
