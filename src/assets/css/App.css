@@ -383,7 +383,7 @@ ul {
 .content-topbar {
   position: absolute;
   top: 0;
-  right: 15px;
+  right: 0;
   background: #2b2b2c;
   border-left: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);
@@ -1853,6 +1853,21 @@ ul {
   padding: 0 10px;
 }
 
+/* Mobile breadcrumb fixes */
+@media (max-width: 576px) {
+  .breadcrumb {
+    font-size: 12px !important;
+  }
+
+  .breadcrumb-item {
+    max-width: 70%;
+  }
+
+  .breadcrumb-item.active {
+    font-size: 12px !important;
+  }
+}
+
 /* =========================
    RESPONSIVE - PROJECT DETAIL
 ========================= */
@@ -2333,4 +2348,23 @@ ul {
     font-size: 11px;
     padding: 12px;
   }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Hide skeleton when image loads */
+.project-img:has(img[style*="opacity: 1"])>div:first-child,
+.carousel-main:has(img[style*="opacity: 1"])>div:first-child,
+.related-project-img-wrap:has(img[style*="opacity: 1"])>div:first-child {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
 }

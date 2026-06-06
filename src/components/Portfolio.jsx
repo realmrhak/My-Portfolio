@@ -6,6 +6,40 @@ import PageNavbar from "./PageNavbar.jsx";
 import project1 from "../assets/images/project-2-1.png";
 import project2 from "../assets/images/project-1-1.png";
 
+// ============================
+// OPTIMIZED IMAGE COMPONENT
+// ============================
+const OptimizedImage = ({ src, alt, className, style }) => {
+  const [loaded, setLoaded] = useState(false);
+
+  // WebP aur AVIF versions generate karo
+  const webpSrc = src.replace(/\.(png|jpe?g)$/, ".webp");
+  const avifSrc = src.replace(/\.(png|jpe?g)$/, ".avif");
+
+  return (
+    <picture style={{ display: "contents" }}>
+      {/* AVIF for modern browsers */}
+      <source srcSet={avifSrc} type="image/avif" />
+      {/* WebP for most browsers */}
+      <source srcSet={webpSrc} type="image/webp" />
+      {/* Fallback to original optimized PNG/JPG */}
+      <img
+        src={src}
+        alt={alt}
+        className={className}
+        style={{
+          ...style,
+          opacity: loaded ? 1 : 0,
+          transition: "opacity 0.4s ease",
+        }}
+        loading="lazy"
+        decoding="async"
+        onLoad={() => setLoaded(true)}
+      />
+    </picture>
+  );
+};
+
 const Portfolio = () => {
   const [activeFilter, setActiveFilter] = useState("All");
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -117,13 +151,39 @@ const Portfolio = () => {
         {filteredProjects.map((project, index) => (
           <div className="col-md-6 col-lg-4 mb-4" key={index}>
             <div className="project-card">
-              <div className="project-img">
-                <img
-                  src={
-                    project.image ||
-                    "https://via.placeholder.com/400x300/1a1a2e/eeeeee?text=Project+Screenshot"
-                  }
+              <div
+                className="project-img"
+                style={{
+                  position: "relative",
+                  overflow: "hidden",
+                  aspectRatio: "16/10",
+                }}
+              >
+                {/* Skeleton loader */}
+                <div
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    background:
+                      "linear-gradient(90deg, #1a1a2e 25%, #252540 50%, #1a1a2e 75%)",
+                    backgroundSize: "200% 100%",
+                    animation: "shimmer 1.5s infinite",
+                    zIndex: 1,
+                  }}
+                />
+
+                {/* Optimized image */}
+                <OptimizedImage
+                  src={project.image}
                   alt={project.title}
+                  className="project-image"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    position: "relative",
+                    zIndex: 2,
+                  }}
                 />
 
                 <div className="project-overlay">

@@ -5,7 +5,7 @@ const Resume = () => {
   const education = [
     {
       title: "Bachelor in Computer Science",
-      date: "2021 — 2025",
+      date: "2022 — 2026",
       desc: "Studying modern web technologies, software engineering and UI/UX.",
     },
     {

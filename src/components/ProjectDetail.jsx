@@ -11,6 +11,40 @@ import {
 import PageNavbar from "./PageNavbar.jsx";
 import { getProjectBySlug, getRelatedProjects } from "../data/projectsData";
 
+// ============================
+// OPTIMIZED IMAGE COMPONENT
+// ============================
+const OptimizedImage = ({ src, alt, className, style }) => {
+  const [loaded, setLoaded] = useState(false);
+
+  // WebP aur AVIF versions generate karo
+  const webpSrc = src.replace(/\.(png|jpe?g)$/, ".webp");
+  const avifSrc = src.replace(/\.(png|jpe?g)$/, ".avif");
+
+  return (
+    <picture style={{ display: "contents" }}>
+      {/* AVIF for modern browsers */}
+      <source srcSet={avifSrc} type="image/avif" />
+      {/* WebP for most browsers */}
+      <source srcSet={webpSrc} type="image/webp" />
+      {/* Fallback to original optimized PNG/JPG */}
+      <img
+        src={src}
+        alt={alt}
+        className={className}
+        style={{
+          ...style,
+          opacity: loaded ? 1 : 0,
+          transition: "opacity 0.4s ease",
+        }}
+        loading="lazy"
+        decoding="async"
+        onLoad={() => setLoaded(true)}
+      />
+    </picture>
+  );
+};
+
 const ProjectDetail = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
@@ -59,18 +93,29 @@ const ProjectDetail = () => {
       <PageNavbar />
 
       {/* Breadcrumb */}
-      <nav
-        aria-label="breadcrumb"
-        style={{ marginBottom: "20px", fontSize: "13px" }}
-      >
+      <nav aria-label="breadcrumb" style={{ marginBottom: "20px" }}>
         <ol
           className="breadcrumb"
-          style={{ background: "transparent", padding: 0, margin: 0 }}
+          style={{
+            background: "transparent",
+            padding: 0,
+            margin: 0,
+            display: "flex",
+            alignItems: "center",
+            flexWrap: "nowrap",
+            overflow: "hidden",
+          }}
         >
-          <li className="breadcrumb-item">
+          <li
+            className="breadcrumb-item"
+            style={{ flexShrink: 0, fontSize: "13px" }}
+          >
             <Link
               to="/portfolio"
-              style={{ color: "#ffdb70", textDecoration: "none" }}
+              style={{
+                color: "#ffdb70",
+                textDecoration: "none",
+              }}
             >
               Portfolio
             </Link>
@@ -78,7 +123,14 @@ const ProjectDetail = () => {
           <li
             className="breadcrumb-item active"
             aria-current="page"
-            style={{ color: "#888" }}
+            style={{
+              color: "#888",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
+              minWidth: 0,
+              fontSize: "13px",
+            }}
           >
             {project.title}
           </li>
@@ -145,11 +197,35 @@ const ProjectDetail = () => {
 
       {/* Image Carousel */}
       <div className="project-carousel" style={{ marginBottom: "30px" }}>
-        <div className="carousel-main">
-          <img
+        <div
+          className="carousel-main"
+          style={{ position: "relative", overflow: "hidden" }}
+        >
+          {/* Skeleton loader */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background:
+                "linear-gradient(90deg, #1a1a2e 25%, #252540 50%, #1a1a2e 75%)",
+              backgroundSize: "200% 100%",
+              animation: "shimmer 1.5s infinite",
+              zIndex: 1,
+            }}
+          />
+
+          {/* Optimized main image */}
+          <OptimizedImage
             src={project.images[currentImageIndex]}
             alt={`${project.title} screenshot ${currentImageIndex + 1}`}
             className="carousel-image"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              position: "relative",
+              zIndex: 2,
+            }}
           />
 
           {project.images.length > 1 && (
@@ -185,7 +261,11 @@ const ProjectDetail = () => {
                 onClick={() => goToImage(index)}
                 aria-label={`Go to image ${index + 1}`}
               >
-                <img src={img} alt={`Thumbnail ${index + 1}`} />
+                <OptimizedImage
+                  src={img}
+                  alt={`Thumbnail ${index + 1}`}
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
               </button>
             ))}
           </div>
@@ -345,8 +425,33 @@ const ProjectDetail = () => {
                   to={`/project/${relProject.slug}`}
                   className="related-project-card"
                 >
-                  <div className="related-project-img-wrap">
-                    <img src={relProject.thumbnail} alt={relProject.title} />
+                  <div
+                    className="related-project-img-wrap"
+                    style={{ position: "relative", overflow: "hidden" }}
+                  >
+                    {/* Skeleton */}
+                    <div
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        background:
+                          "linear-gradient(90deg, #1a1a2e 25%, #252540 50%, #1a1a2e 75%)",
+                        backgroundSize: "200% 100%",
+                        animation: "shimmer 1.5s infinite",
+                        zIndex: 1,
+                      }}
+                    />
+                    <OptimizedImage
+                      src={relProject.thumbnail}
+                      alt={relProject.title}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        position: "relative",
+                        zIndex: 2,
+                      }}
+                    />
                     <div className="related-project-overlay">
                       <span>
                         View Project{" "}
