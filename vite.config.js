@@ -6,27 +6,33 @@ export default defineConfig({
   plugins: [
     react(),
     ViteImageOptimizer({
+      // PNG optimization
       png: {
         quality: 75,
         effort: 7,
       },
+      // JPEG optimization
       jpeg: {
         quality: 75,
         progressive: true,
         mozjpeg: true,
       },
+      // WebP versions generate karo
       webp: {
         quality: 75,
         effort: 4,
         lossless: false,
       },
+      // AVIF versions generate karo
       avif: {
         quality: 60,
         effort: 4,
       },
+      // SVG minification
       svg: {
         multipass: true,
       },
+      // Include all image types
       include: /^.*\.(png|jpe?g|svg|gif)$/i,
       exclude: /node_modules/,
     }),
