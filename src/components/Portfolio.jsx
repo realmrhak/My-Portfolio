@@ -59,7 +59,6 @@ const Portfolio = () => {
       <PageNavbar />
       <h2 className="article-title">Portfolio</h2>
 
-      {/* Mobile Dropdown */}
       <div className="mobile-filter-wrapper d-md-none" ref={dropdownRef}>
         <button
           className="mobile-filter-select"
@@ -96,7 +95,6 @@ const Portfolio = () => {
         )}
       </div>
 
-      {/* Desktop Filters */}
       <div className="filter-container d-none d-md-flex">
         {filters.map((filter, index) => (
           <button
@@ -109,7 +107,6 @@ const Portfolio = () => {
         ))}
       </div>
 
-      {/* Projects Grid */}
       <div className="row">
         {filteredProjects.map((project, index) => (
           <div className="col-md-6 col-lg-4 mb-4" key={index}>

@@ -155,11 +155,32 @@ ul {
 .project-img {
   position: relative;
   overflow: hidden;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: #1a1a2e;
+}
+
+/* Fallback for older browsers without aspect-ratio support */
+@supports not (aspect-ratio: 16 / 10) {
+  .project-img {
+    aspect-ratio: auto;
+    height: 0;
+    padding-bottom: 62.5%;
+    /* 16:10 ratio */
+  }
+
+  .project-img img {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 }
 
 .project-img img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
   display: block;
   transition: transform 0.4s ease;
 }
@@ -1437,15 +1458,36 @@ ul {
 
 .carousel-main {
   position: relative;
+  width: 100%;
   aspect-ratio: 16 / 9;
   background: #0a0a0a;
   overflow: hidden;
+  max-height: 450px;
+  /* Prevent too tall on desktop */
+}
+
+/* Fallback for older browsers without aspect-ratio support */
+@supports not (aspect-ratio: 16 / 9) {
+  .carousel-main {
+    aspect-ratio: auto;
+    height: 0;
+    padding-bottom: 56.25%;
+    /* 16:9 ratio */
+  }
+
+  .carousel-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 }
 
 .carousel-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top center;
+  /* Focus on top-center of image */
   display: block;
   transition: opacity 0.3s ease;
 }
@@ -1758,14 +1800,33 @@ ul {
 
 .related-project-img-wrap {
   position: relative;
+  width: 100%;
   aspect-ratio: 16 / 10;
   overflow: hidden;
+  background: #1a1a2e;
+}
+
+/* Fallback for older browsers without aspect-ratio support */
+@supports not (aspect-ratio: 16 / 10) {
+  .related-project-img-wrap {
+    aspect-ratio: auto;
+    height: 0;
+    padding-bottom: 62.5%;
+    /* 16:10 ratio */
+  }
+
+  .related-project-img-wrap img {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 }
 
 .related-project-img-wrap img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top;
   transition: transform 0.5s ease;
 }
 
@@ -1879,6 +1940,19 @@ ul {
 
   .carousel-main {
     aspect-ratio: 16 / 10;
+    max-height: 350px;
+    /* Prevent too tall on tablet */
+  }
+
+  /* Fallback for older browsers */
+  @supports not (aspect-ratio: 16 / 10) {
+    .carousel-main {
+      aspect-ratio: auto;
+      height: 0;
+      padding-bottom: 62.5%;
+      /* 16:10 ratio */
+      max-height: 350px;
+    }
   }
 
   .carousel-nav {
@@ -1898,7 +1972,36 @@ ul {
 
 @media (max-width: 767px) {
   .carousel-main {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 10;
+    /* Landscape - better for mobile */
+    max-height: 320px;
+    /* Prevent image from being too tall */
+  }
+
+  /* Fallback for older mobile browsers */
+  @supports not (aspect-ratio: 16 / 10) {
+    .carousel-main {
+      aspect-ratio: auto;
+      height: 0;
+      padding-bottom: 62.5%;
+      /* 16:10 ratio */
+      max-height: 320px;
+    }
+  }
+
+  .carousel-image {
+    object-fit: cover;
+    object-position: top center;
+    /* Show top-center portion */
+  }
+
+  /* When using padding-bottom fallback on mobile */
+  @supports not (aspect-ratio: 16 / 10) {
+    .carousel-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
   }
 
   .carousel-nav {
@@ -1927,7 +2030,36 @@ ul {
 
 @media (max-width: 480px) {
   .carousel-main {
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 16 / 10;
+    /* Landscape - shows more width, less height */
+    max-height: 280px;
+    /* Prevent image from being too tall */
+  }
+
+  /* Fallback for very old phones */
+  @supports not (aspect-ratio: 16 / 10) {
+    .carousel-main {
+      aspect-ratio: auto;
+      height: 0;
+      padding-bottom: 62.5%;
+      /* 16:10 ratio */
+      max-height: 280px;
+    }
+  }
+
+  .carousel-image {
+    object-fit: cover;
+    object-position: top center;
+    /* Show top-center of image */
+  }
+
+  /* When using padding-bottom fallback on small phones */
+  @supports not (aspect-ratio: 16 / 10) {
+    .carousel-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
   }
 
   .carousel-counter {

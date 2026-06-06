@@ -47,7 +47,6 @@ const ProjectDetail = () => {
     <section className="content-card">
       <PageNavbar />
 
-      {/* Breadcrumb */}
       <nav aria-label="breadcrumb" style={{ marginBottom: "20px" }}>
         <ol
           className="breadcrumb"
@@ -89,7 +88,6 @@ const ProjectDetail = () => {
         </ol>
       </nav>
 
-      {/* Project Header */}
       <div style={{ textAlign: "center", padding: "20px 0 25px" }}>
         <span
           style={{
@@ -147,7 +145,6 @@ const ProjectDetail = () => {
         </div>
       </div>
 
-      {/* Image Carousel */}
       <div className="project-carousel" style={{ marginBottom: "30px" }}>
         <div className="carousel-main">
           <img
@@ -197,7 +194,6 @@ const ProjectDetail = () => {
         )}
       </div>
 
-      {/* Main Content */}
       <div className="row">
         <div className="col-lg-8">
           <div style={{ marginBottom: "35px" }}>
@@ -319,7 +315,6 @@ const ProjectDetail = () => {
         </div>
       </div>
 
-      {/* Related Projects */}
       {related.length > 0 && (
         <div
           style={{
@@ -373,7 +368,6 @@ const ProjectDetail = () => {
         </div>
       )}
 
-      {/* Back Button */}
       <div
         style={{ textAlign: "center", marginTop: "40px", marginBottom: "20px" }}
       >
