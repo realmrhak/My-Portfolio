@@ -109,8 +109,200 @@ const projectsData = {
     duration: "2 months",
     role: "Full Stack Developer",
     year: "2026"
+  },
+
+  // ===== Dummy / Expanded Portfolio Projects =====
+  "pulseboard": {
+    id: 4,
+    slug: "pulseboard",
+    title: "PulseBoard – Analytics Dashboard",
+    category: "Frontend",
+    overview: "A modern analytics dashboard that visualizes product metrics with interactive charts, filters, and export-ready reports.",
+    description: [
+      "PulseBoard helps teams track KPIs in real time using interactive chart components, date-range filtering, and customizable widgets.",
+      "The dashboard is built for speed: data is normalized on the client and chart rendering is optimized to avoid UI jank.",
+      "Users can export filtered summaries as reports for stakeholders and presentations."
+    ],
+    features: [
+      "Interactive charts with responsive layouts",
+      "Date range and segment filters",
+      "Widget-based dashboard customization",
+      "Client-side caching for faster navigation",
+      "CSV export for filtered datasets",
+      "Accessible UI with keyboard-friendly controls"
+    ],
+    challenges: [
+      { challenge: "Keeping chart rendering smooth with large datasets.", solution: "Implemented memoization, throttled filter updates, and virtualized long lists." },
+      { challenge: "Designing responsive dashboards that remain readable on mobile.", solution: "Used adaptive layouts and simplified chart density at smaller breakpoints." }
+    ],
+    techStack: ["React.js", "Tailwind CSS", "TypeScript", "Chart.js", "REST APIs"],
+    liveDemo: "https://pulseboard-demo.vercel.app",
+    github: "https://github.com/haroonameer/pulseboard",
+    thumbnail: project02,
+    images: [project02, project001, project0002],
+    duration: "1.5 months",
+    role: "Frontend Developer",
+    year: "2026"
+  },
+
+  "shopstack": {
+    id: 5,
+    slug: "shopstack",
+    title: "ShopStack – E-commerce Admin & Storefront",
+    category: "Full Stack",
+    overview: "A MERN-based e-commerce platform with admin inventory controls, product management, and a streamlined checkout flow.",
+    description: [
+      "ShopStack provides a complete shopping experience: browsing, cart management, checkout, and order tracking.",
+      "Admins can manage products, categories, stock levels, and promotions from a dedicated dashboard.",
+      "The backend includes secure endpoints for authentication, role-based access, and order updates."
+    ],
+    features: [
+      "JWT authentication with role-based authorization",
+      "Admin dashboard for product and inventory management",
+      "Shopping cart, checkout, and order tracking",
+      "Image upload pipeline and media optimization",
+      "RESTful API built with Node.js and Express.js"
+    ],
+    challenges: [
+      { challenge: "Preventing inconsistent cart state across sessions.", solution: "Stored cart data server-side and synchronized updates on login." },
+      { challenge: "Managing performance for category and search queries.", solution: "Added query optimizations and indexing strategy for MongoDB." }
+    ],
+    techStack: ["MongoDB", "Express.js", "React.js", "Node.js", "JWT", "Bootstrap"],
+    liveDemo: "https://shopstack-demo.vercel.app",
+    github: "https://github.com/haroonameer/shopstack",
+    thumbnail: project01,
+    images: [project01, project002, project0001],
+    duration: "2 months",
+    role: "Full Stack Developer",
+    year: "2026"
+  },
+
+  "apigateway-pro": {
+    id: 6,
+    slug: "apigateway-pro",
+    title: "API Gateway Pro – Rate Limiting & Observability",
+    category: "AI Projects",
+    overview: "A backend-focused project that adds API gateway capabilities including rate limiting, request logging, and usage monitoring.",
+    description: [
+      "API Gateway Pro provides a centralized way to manage traffic with per-key rate limits and consistent response handling.",
+      "It includes request tracing with unique IDs, structured logging, and dashboards to view usage patterns.",
+      "The system is designed for scalability and integrates cleanly with existing Express services."
+    ],
+    features: [
+      "Rate limiting by API key and IP",
+      "Structured request logging with trace IDs",
+      "Usage metrics and health endpoints",
+      "Middleware-based enforcement",
+      "Configurable policies for different routes"
+    ],
+    challenges: [
+      { challenge: "Keeping overhead low while collecting logs and metrics.", solution: "Used lightweight middleware and buffered logging to reduce latency." },
+      { challenge: "Avoiding race conditions in counters.", solution: "Used atomic increments and TTL-based buckets." }
+    ],
+    techStack: ["Node.js", "Express.js", "MongoDB", "Redis", "Observability"],
+    liveDemo: "https://apigateway-pro-demo.vercel.app",
+    github: "https://github.com/haroonameer/apigateway-pro",
+    thumbnail: project0002,
+    images: [project0002, project002, project001],
+    duration: "1 month",
+    role: "Backend Developer",
+    year: "2026"
+  },
+
+  "meetflow": {
+    id: 7,
+    slug: "meetflow",
+    title: "MeetFlow – Scheduling & Team Booking",
+    category: "Full Stack",
+    overview: "A scheduling web app that enables teams to create availability slots, book meetings, and receive confirmations automatically.",
+    description: [
+      "MeetFlow simplifies coordination by providing availability management, booking rules, and conflict detection.",
+      "Users can schedule one-on-one or group sessions with reminders and confirmation status.",
+      "The backend stores bookings securely and exposes endpoints for calendar views."
+    ],
+    features: [
+      "Availability slot creation and editing",
+      "Booking with conflict validation",
+      "Email notification workflow (placeholder integration)",
+      "Calendar views with month/week layouts",
+      "Secure authentication and protected routes"
+    ],
+    challenges: [
+      { challenge: "Preventing overlapping bookings.", solution: "Implemented transactional conflict checks on slot reservation." }
+    ],
+    techStack: ["React.js", "Node.js", "Express.js", "MongoDB", "JWT", "Bootstrap"],
+    liveDemo: "https://meetflow-demo.vercel.app",
+    github: "https://github.com/haroonameer/meetflow",
+    thumbnail: project02,
+    images: [project02, project0001, project002],
+    duration: "1.5 months",
+    role: "Full Stack Developer",
+    year: "2026"
+  },
+
+  "voice-to-notes": {
+    id: 8,
+    slug: "voice-to-notes",
+    title: "VoiceToNotes – Speech to Study Notes",
+    category: "AI Projects",
+    overview: "An AI-assisted note generator that converts spoken lectures into structured summaries and action items.",
+    description: [
+      "VoiceToNotes turns voice recordings into readable notes by generating summaries, bullet points, and key takeaways.",
+      "It organizes outputs into sections to make reviewing faster and more effective for exams.",
+      "The app is designed as a lightweight prototype where AI calls can be swapped for different providers."
+    ],
+    features: [
+      "Speech-to-text (placeholder integration)",
+      "Automated summary generation",
+      "Key takeaways and action items extraction",
+      "Export notes to PDF (placeholder integration)",
+      "User accounts with secure storage"
+    ],
+    challenges: [
+      { challenge: "Maintaining quality for different accents and recording conditions.", solution: "Added normalization and adjustable confidence thresholds." }
+    ],
+    techStack: ["React.js", "Node.js", "Express.js", "Python", "AI APIs", "MongoDB"],
+    liveDemo: "https://voice-to-notes-demo.vercel.app",
+    github: "https://github.com/haroonameer/voice-to-notes",
+    thumbnail: project01,
+    images: [project01, project001, project0001],
+    duration: "2 months",
+    role: "Full Stack Developer",
+    year: "2026"
+  },
+
+  "secure-patient-portal": {
+    id: 9,
+    slug: "secure-patient-portal",
+    title: "SecurePatient Portal – Appointment & Records",
+    category: "Full Stack",
+    overview: "A secure patient portal with appointments, medical record upload, and role-based access for clinics.",
+    description: [
+      "SecurePatient Portal is built to streamline appointment booking and provide patients with easy access to records.",
+      "Clinic staff can manage appointments, upload documents, and review patient history based on permissions.",
+      "Designed with security-first practices and protected API endpoints."
+    ],
+    features: [
+      "Role-based access for patients and clinic staff",
+      "Appointment booking and status tracking",
+      "Document upload and secure retrieval",
+      "JWT authentication and protected routes",
+      "Responsive UI for mobile and desktop"
+    ],
+    challenges: [
+      { challenge: "Securing file access and preventing unauthorized downloads.", solution: "Implemented signed URLs / access checks on protected endpoints." }
+    ],
+    techStack: ["React.js", "Node.js", "Express.js", "MongoDB", "JWT", "Bootstrap"],
+    liveDemo: "https://secure-patient-portal-demo.vercel.app",
+    github: "https://github.com/haroonameer/secure-patient-portal",
+    thumbnail: project0002,
+    images: [project0002, project002, project0001],
+    duration: "2 months",
+    role: "Full Stack Developer",
+    year: "2026"
   }
 };
+
 
 // Helper function to get project by slug
 export const getProjectBySlug = (slug) => {

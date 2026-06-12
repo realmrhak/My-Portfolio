@@ -17,9 +17,9 @@ const Resume = () => {
 
   const experience = [
     {
-      title: "Frontend Developer Intern",
-      date: "Jan 2025 — Apr 2025",
-      desc: "Building responsive React applications and portfolio websites.",
+      title: "Full Stack Developer Intern",
+      date: "Jan 2026 — Apr 2026",
+      desc: "Worked on developing and maintaining web applications using React and Node.js.",
     },
     // {
     //   title: 'Freelance Web Designer',

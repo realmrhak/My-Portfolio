@@ -3,36 +3,26 @@ import { Link } from "react-router-dom";
 import { FaEye, FaChevronDown, FaBookOpen } from "react-icons/fa";
 import PageNavbar from "./PageNavbar.jsx";
 
-import project1 from "../assets/images/project-2-1.png";
-import project2 from "../assets/images/project-1-1.png";
+import { getAllProjects } from "../data/projectsData";
 
 const Portfolio = () => {
   const [activeFilter, setActiveFilter] = useState("All");
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
-  const projects = useMemo(
-    () => [
-      {
-        title: "Nexra – E-commerce",
-        category: "Full Stack",
-        image: project1,
-        slug: "nexra",
-        link: "https://nexra-demo.vercel.app",
-      },
-      {
-        title: "Nexora AI",
-        category: "AI Projects",
-        image: project2,
-        slug: "nexora-ai",
-        link: "https://nexora-ai-application.vercel.app",
-      },
-    ],
-    [],
-  );
+  const projects = useMemo(() => {
+    // Keep Portfolio card structure consistent with the rest of the UI
+    return getAllProjects().map((p) => ({
+      title: p.title,
+      category: p.category,
+      image: p.thumbnail,
+      slug: p.slug,
+      link: p.liveDemo,
+    }));
+  }, []);
 
   const filters = useMemo(
-    () => ["All", "Full Stack", "Frontend", "AI Projects"],
+    () => ["All", "Full Stack", "AI Projects", "Frontend"],
     [],
   );
 
